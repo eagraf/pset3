@@ -27,6 +27,22 @@ plot(x=BostonHousing$ptratio, y=BostonHousing$medv);
 plot(x=BostonHousing$b, y=BostonHousing$medv);
 plot(x=BostonHousing$lstat, y=BostonHousing$medv);
 
+# Correlations between main predictor and other predictors 
+# Negative correxlations
+plot(BostonHousing$nox~BostonHousing$zn)
+plot(BostonHousing$nox~BostonHousing$dis)
+
+# Positive correlations 
+plot(BostonHousing$nox~BostonHousing$indus)
+plot(BostonHousing$nox~BostonHousing$rad)
+plot(BostonHousing$nox~BostonHousing$tax)
+plot(BostonHousing$nox~BostonHousing$age)
+
+# Correlations between other predictors
+plot(BostonHousing$lstat~BostonHousing$age)
+plot(BostonHousing$lstat~BostonHousing$rm)
+plot(BostonHousing$lstat~BostonHousing$zn)
+
 # PART B
 
 # k-folds cross validation: generate 10 folds
