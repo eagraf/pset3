@@ -162,7 +162,55 @@ ols16 <- glm(medv~rm, data=BostonHousing)
 ols16_cv <- cv.glm(BostonHousing, ols16, K=10)$delta[1]
 ols16_cv
 
+# PART 3
+xx <- names(BostonHousing)[c(1:1, 3:4, 6:13)]
+xx
+
+# Remove sparse rows
+BostonHousing <- na.omit(BostonHousing)
+
+for (i in xx) {
+    new_name <- i
+    old_name <- paste("BostonHousing$",i, sep="")
+    assign(new_name, eval(parse(text=paste("as.numeric(",old_name,")",sep=""))))
+}
+
+for (i in xx) {
+    new_name <- paste(i, "_sq", sep="") 
+    old_name <- paste("BostonHousing$", i,sep="")
+    assign(new_name, eval(parse(text=paste("as.numeric(",old_name,")^2",sep=""))))
+}
+
+for (i in xx) {
+    new_name <- paste(i, "_log", sep="") 
+    old_name <- paste("BostonHousing$", i,sep="")
+    assign(new_name, eval(parse(text=paste("log(as.numeric(",old_name,"))",sep=""))))
+}
+
+controls <- xx
+for (j in xx) {
+    controls <- c(controls,paste(j,"_sq",sep=""))
+    controls <- c(controls,paste(j,"_log",sep=""))
+}
+controls
+
+x <- as.numeric(BostonHousing$nox)
+mod <- paste(paste("model.matrix(~x+",paste(controls,collapse="+")),",data=BostonHousing)",sep="")
+assign("model_z", eval(parse(text=mod)))
+#model_z
+#mod
+
 # PART 4
+
+y <- BostonHousing$medv
+
+ylasso <- cv.glmnet(model_z,y,alpha=1)
+y.z <- coef(ylasso, ylasso$lambda.min)
+y.z
+plot(ylasso)
+ylasso$lambda.min
+#ylasso
+
 
 # PART 5
 
