@@ -489,8 +489,8 @@ lines(log(newdata$crim), newdata$predictions_crim_log, col = "blue")
 fit_indus_log <- glm(medv ~ log(indus),data=BostonHousing)
 newdata <- data.frame(indus=seq(min(BostonHousing$indus), max(BostonHousing$indus),0.1))
 plot(log(BostonHousing$indus),BostonHousing$medv)
-newdata$predictions_indus_sq <- predict(fit_indus_sq, newdata)
-lines(newdata$indus^2, newdata$predictions_indus_sq, col = "blue")
+newdata$predictions_indus_log <- predict(fit_indus_log, newdata)
+lines(log(newdata$indus), newdata$predictions_indus_log, col = "blue")
 
 ###
 # Polynomial binary predictors are hard 
@@ -500,86 +500,87 @@ lines(newdata$indus^2, newdata$predictions_indus_sq, col = "blue")
 # newdata$predictions_chas_sq <- predict(fit_chas_sq, newdata)
 # lines(newdata$chas^2, newdata$predictions_chas_sq, col = "blue")
 
-fit_rm_sq <- glm(medv ~ rm^2,data=BostonHousing)
+fit_rm_log <- glm(medv ~ log(rm),data=BostonHousing)
 newdata <- data.frame(rm=seq(min(BostonHousing$rm), max(BostonHousing$rm),0.1))
-plot(BostonHousing$rm^2,BostonHousing$medv)
-newdata$predictions_rm_sq <- predict(fit_rm_sq, newdata)
-lines(newdata$rm^2, newdata$predictions_rm_sq, col = "blue")
+plot(log(BostonHousing$rm),BostonHousing$medv)
+newdata$predictions_rm_log <- predict(fit_rm_log, newdata)
+lines(log(newdata$rm), newdata$predictions_rm_log, col = "blue")
 
-fit_age_sq <- glm(medv ~ age^2,data=BostonHousing)
+fit_age_log <- glm(medv ~ log(age),data=BostonHousing)
 newdata <- data.frame(age=seq(min(BostonHousing$age), max(BostonHousing$age),0.1))
-plot(BostonHousing$age^2,BostonHousing$medv)
-newdata$predictions_age_sq <- predict(fit_age_sq, newdata)
-lines(newdata$age^2, newdata$predictions_age_sq, col = "blue")
+plot(log(BostonHousing$age),BostonHousing$medv)
+newdata$predictions_age_log <- predict(fit_age_log, newdata)
+lines(log(newdata$age), newdata$predictions_age_log, col = "blue")
 
-fit_dis_sq <- glm(medv ~ dis^2,data=BostonHousing)
+fit_dis_log <- glm(medv ~ log(dis),data=BostonHousing)
 newdata <- data.frame(dis=seq(min(BostonHousing$dis), max(BostonHousing$dis),0.1))
-plot(BostonHousing$dis^2,BostonHousing$medv)
-newdata$predictions_dis_sq <- predict(fit_dis_sq, newdata)
-lines(newdata$dis^2, newdata$predictions_dis_sq, col = "blue")
+plot(log(BostonHousing$dis),BostonHousing$medv)
+newdata$predictions_dis_log <- predict(fit_dis_log, newdata)
+lines(log(newdata$dis), newdata$predictions_dis_log, col = "blue")
 
-fit_rad_sq <- glm(medv ~ rad^2,data=BostonHousing)
+fit_rad_log <- glm(medv ~ log(rad),data=BostonHousing)
 newdata <- data.frame(rad=seq(min(BostonHousing$rad), max(BostonHousing$rad),0.1))
-plot(BostonHousing$rad^2,BostonHousing$medv)
-newdata$predictions_rad_sq <- predict(fit_rad_sq, newdata)
-lines(newdata$rad^2, newdata$predictions_rad_sq, col = "blue")
+plot(log(BostonHousing$rad),BostonHousing$medv)
+newdata$predictions_rad_log <- predict(fit_rad_log, newdata)
+lines(log(newdata$rad), newdata$predictions_rad_log, col = "blue")
 
-fit_tax_sq <- glm(medv ~ tax^2,data=BostonHousing)
+fit_tax_log <- glm(medv ~ log(tax),data=BostonHousing)
 newdata <- data.frame(tax=seq(min(BostonHousing$tax), max(BostonHousing$tax),0.1))
-plot(BostonHousing$tax^2,BostonHousing$medv)
-newdata$predictions_tax_sq <- predict(fit_tax_sq, newdata)
-lines(newdata$tax^2, newdata$predictions_tax_sq, col = "blue")
+plot(log(BostonHousing$tax),BostonHousing$medv)
+newdata$predictions_tax_log <- predict(fit_tax_log, newdata)
+lines(log(newdata$tax), newdata$predictions_tax_log, col = "blue")
 
-fit_ptratio_sq <- glm(medv ~ ptratio^2,data=BostonHousing)
+fit_ptratio_log <- glm(medv ~ log(ptratio),data=BostonHousing)
 newdata <- data.frame(ptratio=seq(min(BostonHousing$ptratio), max(BostonHousing$ptratio),0.1))
-plot(BostonHousing$ptratio^2,BostonHousing$medv)
-newdata$predictions_ptratio_sq <- predict(fit_ptratio_sq, newdata)
-lines(newdata$ptratio^2, newdata$predictions_ptratio_sq, col = "blue")
+plot(log(BostonHousing$ptratio),BostonHousing$medv)
+newdata$predictions_ptratio_log <- predict(fit_ptratio_log, newdata)
+lines(log(newdata$ptratio), newdata$predictions_ptratio_log, col = "blue")
 
-fit_b_sq <- glm(medv ~ b^2,data=BostonHousing)
+fit_b_log <- glm(medv ~ log(b),data=BostonHousing)
 newdata <- data.frame(b=seq(min(BostonHousing$b), max(BostonHousing$b),0.1))
-plot(BostonHousing$b^2,BostonHousing$medv)
-newdata$predictions_b_sq <- predict(fit_b_sq, newdata)
-lines(newdata$b^2, newdata$predictions_b_sq, col = "blue")
+plot(log(BostonHousing$b),BostonHousing$medv)
+newdata$predictions_b_log <- predict(fit_b_log, newdata)
+lines(log(newdata$b), newdata$predictions_b_log, col = "blue")
 
-fit_lstat_sq <- glm(medv ~ lstat^2,data=BostonHousing)
+fit_lstat_log <- glm(medv ~ log(lstat),data=BostonHousing)
 newdata <- data.frame(lstat=seq(min(BostonHousing$lstat), max(BostonHousing$lstat),0.1))
-plot(BostonHousing$lstat^2,BostonHousing$medv)
-newdata$predictions_lstat_sq <- predict(fit_lstat_sq, newdata)
-lines(newdata$lstat^2, newdata$predictions_lstat_sq, col = "blue")
+plot(log(BostonHousing$lstat),BostonHousing$medv)
+newdata$predictions_lstat_log <- predict(fit_lstat_log, newdata)
+lines(log(newdata$lstat), newdata$predictions_lstat_log, col = "blue")
 
 # Get CV MSE of all squared predictors
-cv_error = cv.glm(BostonHousing, fit_crim_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_crim_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_indus_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_indus_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_rm_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_rm_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_age_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_age_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_dis_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_dis_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_rad_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_rad_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_tax_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_tax_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_ptratio_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_ptratio_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_b_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_b_log, K=10)$delta[1]
 cv_error
 
-cv_error = cv.glm(BostonHousing, fit_lstat_sq, K=10)$delta[1]
+cv_error = cv.glm(BostonHousing, fit_lstat_log, K=10)$delta[1]
 cv_error
 
 # PART 3
+# Combine nox with best models (5 knot rm spline & 4 knot lstat spline)
 best_model <- glm(medv~nox+ns(rm,df=5)+ns(lstat,df=4), data=BostonHousing)
 summary(best_model)
 cv_error = cv.glm(BostonHousing, best_model, K=10)$delta[1]
