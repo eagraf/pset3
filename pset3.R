@@ -146,7 +146,244 @@ ols16 <- glm(medv~rm, data=BostonHousing)
 ols16_cv <- cv.glm(BostonHousing, ols16, K=10)$delta[1]
 ols16_cv
 
+## SPLINES BEGIN HERE ## 
+
+# Nox & medv natural spline with 1 knot 
+fit_1knot <- glm(medv ~ ns(nox,df=1),data=BostonHousing)
+newdata <- data.frame(nox=seq(min(BostonHousing$nox), max(BostonHousing$nox),0.01))
+plot(BostonHousing$nox,BostonHousing$medv)
+newdata$predictions_knot1 <- predict(fit_1knot, newdata)
+lines(newdata$nox, newdata$predictions_knot1, col = "blue")
+
+# Nox & medv natural spline with 2 knots
+fit_2knot <- glm(medv ~ ns(nox,df=2),data=BostonHousing)
+plot(BostonHousing$nox,BostonHousing$medv)
+newdata$predictions_knot2 <- predict(fit_2knot, newdata)
+lines(newdata$nox, newdata$predictions_knot2, col = "blue")
+
+# Nox & medv natural spline with 3 knots
+fit_3knot <- glm(medv ~ ns(nox,df=3),data=BostonHousing)
+plot(BostonHousing$nox,BostonHousing$medv)
+newdata$predictions_knot3 <- predict(fit_3knot, newdata)
+lines(newdata$nox, newdata$predictions_knot3, col = "blue")
+
+# Nox & medv natural spline with 4 knots
+fit_4knot <- glm(medv ~ ns(nox,df=4),data=BostonHousing)
+plot(BostonHousing$nox,BostonHousing$medv)
+newdata$predictions_knot4 <- predict(fit_4knot, newdata)
+lines(newdata$nox, newdata$predictions_knot4, col = "blue")
+
+# Nox & medv natural spline with 5 knots
+fit_5knot <- glm(medv ~ ns(nox,df=5),data=BostonHousing)
+plot(BostonHousing$nox,BostonHousing$medv)
+newdata$predictions_knot5 <- predict(fit_5knot, newdata)
+lines(newdata$nox, newdata$predictions_knot5, col = "blue")
+
+# Get CV accuracy of all nox splines 
+cv_error1 = cv.glm(BostonHousing, fit_1knot, K=10)$delta[1]
+cv_error1
+
+cv_error2 = cv.glm(BostonHousing, fit_2knot, K=10)$delta[1]
+cv_error2
+
+cv_error3 = cv.glm(BostonHousing, fit_3knot, K=10)$delta[1]
+cv_error3
+
+cv_error4 = cv.glm(BostonHousing, fit_4knot, K=10)$delta[1]
+cv_error4
+
+cv_error5 = cv.glm(BostonHousing, fit_5knot, K=10)$delta[1]
+cv_error5
+
+# lstat & medv natural spline with 1 knot 
+fit_1knot <- glm(medv ~ ns(lstat,df=1),data=BostonHousing)
+newdata <- data.frame(lstat=seq(min(BostonHousing$lstat), max(BostonHousing$lstat),0.1))
+plot(BostonHousing$lstat,BostonHousing$medv)
+newdata$predictions_knot1 <- predict(fit_1knot, newdata)
+lines(newdata$lstat, newdata$predictions_knot1, col = "blue")
+
+# lstat & medv natural spline with 2 knots
+fit_2knot <- glm(medv ~ ns(lstat,df=2),data=BostonHousing)
+plot(BostonHousing$lstat,BostonHousing$medv)
+newdata$predictions_knot2 <- predict(fit_2knot, newdata)
+lines(newdata$lstat, newdata$predictions_knot2, col = "blue")
+
+# lstat & medv natural spline with 3 knots
+fit_3knot <- glm(medv ~ ns(lstat,df=3),data=BostonHousing)
+plot(BostonHousing$lstat,BostonHousing$medv)
+newdata$predictions_knot3 <- predict(fit_3knot, newdata)
+lines(newdata$lstat, newdata$predictions_knot3, col = "blue")
+
+# lstat & medv natural spline with 4 knots
+fit_4knot <- glm(medv ~ ns(lstat,df=4),data=BostonHousing)
+plot(BostonHousing$lstat,BostonHousing$medv)
+newdata$predictions_knot4 <- predict(fit_4knot, newdata)
+lines(newdata$lstat, newdata$predictions_knot4, col = "blue")
+
+# lstat & medv natural spline with 5 knots
+fit_5knot <- glm(medv ~ ns(lstat,df=5),data=BostonHousing)
+plot(BostonHousing$lstat,BostonHousing$medv)
+newdata$predictions_knot5 <- predict(fit_5knot, newdata)
+lines(newdata$lstat, newdata$predictions_knot5, col = "blue")
+
+# Get CV accuracy of all lstat splines 
+cv_error1 = cv.glm(BostonHousing, fit_1knot, K=10)$delta[1]
+cv_error1
+
+cv_error2 = cv.glm(BostonHousing, fit_2knot, K=10)$delta[1]
+cv_error2
+
+cv_error3 = cv.glm(BostonHousing, fit_3knot, K=10)$delta[1]
+cv_error3
+
+# Lstat & medv with 4 knots has best CV accuracy score
+cv_error4 = cv.glm(BostonHousing, fit_4knot, K=10)$delta[1]
+cv_error4
+
+cv_error5 = cv.glm(BostonHousing, fit_5knot, K=10)$delta[1]
+cv_error5
+
+# rm & medv natural spline with 1 knot 
+fit_1knot <- glm(medv ~ ns(rm,df=1),data=BostonHousing)
+newdata <- data.frame(rm=seq(min(BostonHousing$rm), max(BostonHousing$rm),0.01))
+plot(BostonHousing$rm,BostonHousing$medv)
+newdata$predictions_knot1 <- predict(fit_1knot, newdata)
+lines(newdata$rm, newdata$predictions_knot1, col = "blue")
+
+# rm & medv natural spline with 2 knots
+fit_2knot <- glm(medv ~ ns(rm,df=2),data=BostonHousing)
+plot(BostonHousing$rm,BostonHousing$medv)
+newdata$predictions_knot2 <- predict(fit_2knot, newdata)
+lines(newdata$rm, newdata$predictions_knot2, col = "blue")
+
+# rm & medv natural spline with 3 knots
+fit_3knot <- glm(medv ~ ns(rm,df=3),data=BostonHousing)
+plot(BostonHousing$rm,BostonHousing$medv)
+newdata$predictions_knot3 <- predict(fit_3knot, newdata)
+lines(newdata$rm, newdata$predictions_knot3, col = "blue")
+
+# rm & medv natural spline with 4 knots
+fit_4knot <- glm(medv ~ ns(rm,df=4),data=BostonHousing)
+plot(BostonHousing$rm,BostonHousing$medv)
+newdata$predictions_knot4 <- predict(fit_4knot, newdata)
+lines(newdata$rm, newdata$predictions_knot4, col = "blue")
+
+# rm & medv natural spline with 5 knots
+fit_5knot <- glm(medv ~ ns(rm,df=5),data=BostonHousing)
+
+# Get CV accuracy of all rm splines 
+cv_error1 = cv.glm(BostonHousing, fit_1knot, K=10)$delta[1]
+cv_error1
+
+cv_error2 = cv.glm(BostonHousing, fit_2knot, K=10)$delta[1]
+cv_error2
+
+cv_error3 = cv.glm(BostonHousing, fit_3knot, K=10)$delta[1]
+cv_error3
+
+cv_error4 = cv.glm(BostonHousing, fit_4knot, K=10)$delta[1]
+cv_error4
+
+cv_error5 = cv.glm(BostonHousing, fit_5knot, K=10)$delta[1]
+cv_error5
+
+# b & medv natural spline with 1 knot 
+fit_1knot <- glm(medv ~ ns(b,df=1),data=BostonHousing)
+newdata <- data.frame(b=seq(min(BostonHousing$b), max(BostonHousing$b),0.1))
+plot(BostonHousing$b,BostonHousing$medv)
+newdata$predictions_knot1 <- predict(fit_1knot, newdata)
+lines(newdata$b, newdata$predictions_knot1, col = "blue")
+
+# b & medv natural spline with 2 knots
+fit_2knot <- glm(medv ~ ns(b,df=2),data=BostonHousing)
+plot(BostonHousing$b,BostonHousing$medv)
+newdata$predictions_knot2 <- predict(fit_2knot, newdata)
+lines(newdata$b, newdata$predictions_knot2, col = "blue")
+
+# b & medv natural spline with 3 knots
+fit_3knot <- glm(medv ~ ns(b,df=3),data=BostonHousing)
+plot(BostonHousing$b,BostonHousing$medv)
+newdata$predictions_knot3 <- predict(fit_3knot, newdata)
+lines(newdata$b, newdata$predictions_knot3, col = "blue")
+
+# b & medv natural spline with 4 knots
+fit_4knot <- glm(medv ~ ns(b,df=4),data=BostonHousing)
+plot(BostonHousing$b,BostonHousing$medv)
+newdata$predictions_knot4 <- predict(fit_4knot, newdata)
+lines(newdata$b, newdata$predictions_knot4, col = "blue")
+
+# 5 knots causes error: Error in qr.default(t(const))
+# b medv natural spline with 5 knots
+# fit_5knot <- glm(medv ~ ns(b,df=5),data=BostonHousing)
+
+# Get CV accuracy of all rm splines 
+cv_error1 = cv.glm(BostonHousing, fit_1knot, K=10)$delta[1]
+cv_error1
+
+cv_error2 = cv.glm(BostonHousing, fit_2knot, K=10)$delta[1]
+cv_error2
+
+cv_error3 = cv.glm(BostonHousing, fit_3knot, K=10)$delta[1]
+cv_error3
+
+cv_error4 = cv.glm(BostonHousing, fit_4knot, K=10)$delta[1]
+cv_error4
+
+# indus & medv natural spline with 1 knot 
+fit_1knot <- glm(medv ~ ns(indus,df=1),data=BostonHousing)
+newdata <- data.frame(indus=seq(min(BostonHousing$indus), max(BostonHousing$indus),0.1))
+plot(BostonHousing$indus,BostonHousing$medv)
+newdata$predictions_knot1 <- predict(fit_1knot, newdata)
+lines(newdata$indus, newdata$predictions_knot1, col = "blue")
+
+# indus & medv natural spline with 2 knots
+fit_2knot <- glm(medv ~ ns(indus,df=2),data=BostonHousing)
+plot(BostonHousing$indus,BostonHousing$medv)
+newdata$predictions_knot2 <- predict(fit_2knot, newdata)
+lines(newdata$indus, newdata$predictions_knot2, col = "blue")
+
+# indus & medv natural spline with 3 knots
+fit_3knot <- glm(medv ~ ns(indus,df=3),data=BostonHousing)
+plot(BostonHousing$indus,BostonHousing$medv)
+newdata$predictions_knot3 <- predict(fit_3knot, newdata)
+lines(newdata$indus, newdata$predictions_knot3, col = "blue")
+
+# indus & medv natural spline with 4 knots
+fit_4knot <- glm(medv ~ ns(indus,df=4),data=BostonHousing)
+plot(BostonHousing$indus,BostonHousing$medv)
+newdata$predictions_knot4 <- predict(fit_4knot, newdata)
+lines(newdata$indus, newdata$predictions_knot4, col = "blue")
+
+# indus & medv natural spline with 5 knots
+fit_5knot <- glm(medv ~ ns(indus,df=5),data=BostonHousing)
+plot(BostonHousing$indus,BostonHousing$medv)
+newdata$predictions_knot5 <- predict(fit_5knot, newdata)
+lines(newdata$indus, newdata$predictions_knot5, col = "blue")
+
+# Get CV accuracy of all indus splines 
+cv_error1 = cv.glm(BostonHousing, fit_1knot, K=10)$delta[1]
+cv_error1
+
+cv_error2 = cv.glm(BostonHousing, fit_2knot, K=10)$delta[1]
+cv_error2
+
+cv_error3 = cv.glm(BostonHousing, fit_3knot, K=10)$delta[1]
+cv_error3
+
+cv_error4 = cv.glm(BostonHousing, fit_4knot, K=10)$delta[1]
+cv_error4
+
+cv_error5 = cv.glm(BostonHousing, fit_5knot, K=10)$delta[1]
+cv_error5
+
+## SPLINES END HERE ## 
+
 # PART 3
+best_model <- glm(medv~nox+ns(rm,df=5)+ns(lstat,df=4), data=BostonHousing)
+summary(best_model)
+cv_error = cv.glm(BostonHousing, best_model, K=10)$delta[1]
+cv_error
+
 xx <- names(BostonHousing)[c(1:1, 3:4, 6:13)]
 xx
 
@@ -181,8 +418,8 @@ controls
 x <- as.numeric(BostonHousing$nox)
 mod <- paste(paste("model.matrix(~x+",paste(controls,collapse="+")),",data=BostonHousing)",sep="")
 assign("model_z", eval(parse(text=mod)))
-#model_z
-#mod
+model_z
+mod
 
 # PART 4
 
