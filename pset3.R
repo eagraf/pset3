@@ -580,8 +580,8 @@ cv_error = cv.glm(BostonHousing, fit_lstat_log, K=10)$delta[1]
 cv_error
 
 # PART 3
-# Combine nox with best models (5 knot rm spline & 4 knot lstat spline)
-best_model <- glm(medv~nox+ns(rm,df=5)+ns(lstat,df=4), data=BostonHousing)
+# Combine nox with best models (5 knot rm spline & 4 knot lstat spline & relationship betwee nox*rm)
+best_model <- glm(medv~nox+ns(rm,df=5)+ns(lstat,df=4)+(nox*rm), data=BostonHousing)
 summary(best_model)
 cv_error = cv.glm(BostonHousing, best_model, K=10)$delta[1]
 cv_error
